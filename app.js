@@ -1,19 +1,21 @@
-// const express = require("express") use when type commonjs
-import express from "express"
-import dotenv from "dotenv"
-import productRoutes from "./routes/products.js"
-import { connectDatabase } from "./config/dbconnect.js"
-dotenv.config({path: "backend/config/config.env"})
+import express from 'express'
+import dotenv from 'dotenv'
+import connectDB from './config/dbConnect.js'
+const app = express()
+dotenv.config({path:'backend/config/config.env'})
 
-const app = express();
+connectDB();
 
-//connecting to database
-connectDatabase();
+app.use(express.json())
 
-app.use("/api/v1" , productRoutes);
+//import all routes
+import productRoutes from './routes/products.js'
+
+app.use('/api/v1' , productRoutes)
 
 
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`Server has been started on port = ${process.env.PORT} in ${process.env.NODE_ENV} mode.`)
-});
+
+app.listen(process.env.PORT,()=>{
+    console.log(`"Server has been started at Port ${process.env.PORT} in ${process.env.NODE_ENV}"`)
+})
