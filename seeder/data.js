@@ -1,0 +1,73 @@
+export default [
+  {
+    name: "Noise Cancelling Headphones",
+    price: 4999,
+    description: "High-quality noise cancelling over-ear headphones.",
+    ratings: 4.5,
+    images: {
+      public_id: "sample_image_1",
+      url: "https://example.com/image1.jpg",
+    },
+    category: "Headphones",
+    seller: "Tech World",
+    numOfReviews: 1,
+    reviews: {
+      user: "60d0fe4f5311236168a109ca",
+      rating: 4,
+      comment: "Great sound quality!",
+    },
+    user: "60d0fe4f5311236168a109ca",
+  },
+  {
+    name: "4K UHD Smart TV",
+    price: 29999,
+    description: "A 55-inch Ultra HD smart TV with voice control.",
+    ratings: 4.7,
+    images: {
+      public_id: "sample_image_2",
+      url: "https://example.com/image2.jpg",
+    },
+    category: "Electronics",
+    seller: "Home Appliances Ltd",
+    numOfReviews: 0,
+    user: "60d0fe4f5311236168a109cb",
+  },
+  {
+    name: "Wireless Bluetooth Speaker",
+    price: 1999,
+    description: "Portable Bluetooth speaker with deep bass and 10h battery life.",
+    ratings: 4.3,
+    images: {
+      public_id: "sample_image_3",
+      url: "https://example.com/image3.jpg",
+    },
+    category: "Accessories",
+    seller: "MusicMania",
+    numOfReviews: 1,
+    reviews: {
+      user: "60d0fe4f5311236168a109cc",
+      rating: 5,
+      comment: "Amazing sound for the price!",
+    },
+    user: "60d0fe4f5311236168a109cc",
+  },
+  {
+    name: "Gaming Laptop",
+    price: 75999,
+    description: "High-performance gaming laptop with RTX 3060 GPU.",
+    ratings: 4.8,
+    images: {
+      public_id: "sample_image_4",
+      url: "https://example.com/image4.jpg",
+    },
+    category: "Laptops",
+    seller: "GameHub",
+    numOfReviews: 2,
+    reviews: {
+      user: "60d0fe4f5311236168a109cd",
+      rating: 4,
+      comment: "Runs all modern games smoothly.",
+    },
+    user: "60d0fe4f5311236168a109cd",
+  },
+];
