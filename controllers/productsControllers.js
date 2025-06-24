@@ -1,4 +1,5 @@
 import Product from '../models/Products.js'
+import ErrorHandler from '../utils/errorHandler.js'
 //api/prodcuts
 export const getProducts = async (req,res)=>{
 
@@ -19,13 +20,12 @@ export const newProducts = async (req,res)=>{
 }
 
 
-export const getProductDetail = async (req,res)=>{
+export const getProductDetail = async (req,res,next)=>{
     const product = await Product.findById(req.params.id)
 
     if(!product) {
-        return res.status(404).json({
-            error: "Product not found",
-        });
+       return next(new ErrorHandler("Product not found", 404));
+
     }
 
     res.status(200).json({
