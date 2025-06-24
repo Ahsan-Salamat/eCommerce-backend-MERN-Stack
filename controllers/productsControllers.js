@@ -1,26 +1,32 @@
+import catchAsyncError from '../middlewares/catchAsyncError.js';
 import Product from '../models/Products.js'
+import ApiFilter from '../utils/ApiFilter.js';
 import ErrorHandler from '../utils/errorHandler.js'
-//api/prodcuts
-export const getProducts = async (req,res)=>{
+//api/products
 
-    const products = await Product.find();
+
+export const getProducts = catchAsyncError( async(req,res)=>{
+
+    const apifilter = new ApiFilter(Product, req.query).search()
+
+    let products = await apifilter.query;
 
     res.status(200).json({
         products,
     })
-}
+});
 
 //api/admin/products
-export const newProducts = async (req,res)=>{
+export const newProducts = catchAsyncError(async (req, res) => {
     const product = await Product.create(req.body)
 
     res.status(200).json({
         product,
     })
-}
+});
 
 
-export const getProductDetail = async (req,res,next)=>{
+export const getProductDetail = catchAsyncError (async (req,res,next)=>{
     const product = await Product.findById(req.params.id)
 
     if(!product) {
@@ -31,9 +37,10 @@ export const getProductDetail = async (req,res,next)=>{
     res.status(200).json({
         product,
     })
-}
+})
 
-export const updateProduct = async (req,res)=>{
+
+export const updateProduct = catchAsyncError(async (req, res) => {
     let product = await Product.findById(req.params.id)
 
     if(!product) {
@@ -47,9 +54,9 @@ export const updateProduct = async (req,res)=>{
     res.status(200).json({
         product,
     })
-}
+});
 
-export const deleteProduct = async (req,res)=>{
+export const deleteProduct = catchAsyncError(async (req, res) => {
     const product = await Product.findById(req.params.id)
 
     if(!product) {
@@ -63,4 +70,4 @@ export const deleteProduct = async (req,res)=>{
     res.status(200).json({
        message: "Product has been deleted"
     })
-}
+});
