@@ -5,15 +5,17 @@ import ErrorHandler from '../utils/errorHandler.js'
 //api/products
 
 
-export const getProducts = catchAsyncError( async(req,res)=>{
+export const getProducts = catchAsyncError(async (req, res) => {
+    const apiFilter = new ApiFilter(Product.find(), req.query)
+                        .search()
+                        .filter();
 
-    const apifilter = new ApiFilter(Product, req.query).search()
-
-    let products = await apifilter.query;
+    const products = await apiFilter.query;
 
     res.status(200).json({
+        success: true,
         products,
-    })
+    });
 });
 
 //api/admin/products
