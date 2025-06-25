@@ -21,8 +21,8 @@ class ApiFilter {
   filter() {
     const queryCopy = { ...this.queryStr };
 
-    const fieldsToRemove = ["keywords"];
-    fieldsToRemove.forEach(field => delete queryCopy[field]);
+    const fieldsToRemove = ["keywords","page"];
+    fieldsToRemove.forEach((field) => delete queryCopy[field]);
 
     let queryStr = JSON.stringify(queryCopy);
 
@@ -32,21 +32,28 @@ class ApiFilter {
 
     // Convert string numbers to numbers for comparison
     for (const key in parsedQuery) {
-        if (typeof parsedQuery[key] === 'object') {
-            for (const op in parsedQuery[key]) {
-                const val = parsedQuery[key][op];
-                if (!isNaN(val)) {
-                    parsedQuery[key][op] = Number(val);
-                }
-            }
+      if (typeof parsedQuery[key] === "object") {
+        for (const op in parsedQuery[key]) {
+          const val = parsedQuery[key][op];
+          if (!isNaN(val)) {
+            parsedQuery[key][op] = Number(val);
+          }
         }
+      }
     }
 
     console.log("Final MongoDB filter:", parsedQuery); // Debug log
 
     this.query = this.query.find(parsedQuery);
     return this;
-}
+  }
+
+  pagination(limitPerPageProd){
+    const currentpage = Number(this.queryStr.page) || 1;
+    const skipProducts = limitPerPageProd * (currentpage - 1);
+    this.query = this.query.limit(limitPerPageProd).skip(skipProducts);
+    return this;
+  }
 }
 
 export default ApiFilter;
