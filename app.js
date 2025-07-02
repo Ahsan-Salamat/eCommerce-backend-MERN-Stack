@@ -24,7 +24,7 @@ const server = app.listen(process.env.PORT,()=>{
 
 process.on("unhandledRejection", (err)=>{
     console.log("ERROR: ", err);
-    console.log("Shutting down the server due to unhandled promise rejection");
+    console.log("Shutting down the Server due to unhandled Promise Rejection :500");
     server.close(()=>{
         process.exit(1);
     })
