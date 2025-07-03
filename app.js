@@ -2,12 +2,14 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './config/dbConnect.js'
 import errorMiddleware from './middlewares/errors.js'
+import cookieParser from 'cookie-parser'
 const app = express()
 dotenv.config({path:'backend/config/config.env'})
 
 connectDB();
 
 app.use(express.json())
+app.use(cookieParser())
 
 //import all routes
 import productRoutes from './routes/products.js'

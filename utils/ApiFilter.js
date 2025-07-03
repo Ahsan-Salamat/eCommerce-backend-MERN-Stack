@@ -42,8 +42,6 @@ class ApiFilter {
       }
     }
 
-    console.log("Final MongoDB filter:", parsedQuery); // Debug log
-
     this.query = this.query.find(parsedQuery);
     return this;
   }
