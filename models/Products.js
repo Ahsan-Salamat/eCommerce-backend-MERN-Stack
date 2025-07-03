@@ -17,8 +17,8 @@ const productSchema = new mongoose.Schema({
   },
   ratings: { type: Number, default: 0 },
   images: {
-    public_id: { type: String, required: true },
-    url: { type: String, required: true },
+    public_id: { type: String, required: false },
+    url: { type: String, required: false },
   },
   category: {
     type: String,
@@ -41,7 +41,7 @@ const productSchema = new mongoose.Schema({
   },
   seller: {
     type: String,
-    required: [true, "Please Enter Product Seller"],
+    required: [false, "Please Enter Product Seller"],
   },
   numOfReviews: {
     type: Number,
@@ -65,7 +65,7 @@ const productSchema = new mongoose.Schema({
   user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: false,
+      required: true,
     },
 },{timestamps: true});
 

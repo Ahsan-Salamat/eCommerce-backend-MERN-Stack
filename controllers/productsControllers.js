@@ -21,6 +21,9 @@ export const getProducts = catchAsyncError(async (req, res) => {
 
 //api/admin/products
 export const newProducts = catchAsyncError(async (req, res) => {
+
+  req.body.user = req.user._id; // Assuming req.user is set by the authentication middleware
+
   const product = await Product.create(req.body);
 
   res.status(200).json({
