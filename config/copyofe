@@ -1,0 +1,11 @@
+ PORT=3000
+
+ NODE_ENV=DEVELOPMENT
+ 
+ DB_LOCAL_URI=mongodb://localhost:27017/eCommerece-v1
+
+ DB_URI=mongodb://localhost:27017/eCommerece-v1
+
+ JWT_SECRET=ashd327yhdf232dh2ehfb2884r2dhf2uf2874fd
+ JWT_EXPIRE=7d
+ COOKIE_EXPIRE_TIME=7
