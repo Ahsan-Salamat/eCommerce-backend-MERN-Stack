@@ -51,3 +51,28 @@ export const logoutUser = catchAsyncError(async (req, res, next) => {
         message: "Logged out successfully"
     })
 })
+
+export const forgetPassword = catchAsyncError(async (req, res, next) => {
+    const { email , password} = req.body;
+
+    if(!email || !password){
+        return next(new ErrorHandler("Please enter email and password", 400));
+    }
+    //Find user in database
+    const user = await User.findOne({email}).select("+password");
+    //check if user is exists
+    if(!user){
+        return next(new ErrorHandler("Invalid email or password", 401));
+    }
+
+    //check if password is correct 
+    const isPasswordMatched = await user.comparePassword(password);
+    if(!isPasswordMatched){
+        return next(new ErrorHandler("Invalid email or password", 401));
+    }
+
+
+    const token = user.getJwtToken();
+
+    sendToken(user, 201, res);
+});
