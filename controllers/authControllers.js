@@ -60,14 +60,32 @@ export const forgetPassword = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("Invalid email or password", 404));
     }
 
-    //check if password is correct 
-    const isPasswordMatched = await user.comparePassword(password);
-    if(!isPasswordMatched){
-        return next(new ErrorHandler("Invalid email or password", 401));
+    //Get reset password token
+    const resetToken = user.getResetPasswordToken();
+
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+
+    const message = resetPasswordEmail(resetUrl, user?.name);
+
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: "Password Reset",
+            message
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `Email sent to ${user.email} successfully`
+        })
+
+    } catch (error) {
+        user.resetpasswordToken = undefined;
+        user.resetpasswordExpire = undefined;
+
+        await user.save();
+        return encodeXText(new ErrorHandler(error.message, 500));
     }
-
-
-    const token = user.getJwtToken();
 
     sendToken(user, 201, res);
 });
