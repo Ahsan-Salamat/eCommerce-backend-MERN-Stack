@@ -34,3 +34,6 @@ const resetPasswordEmail = (resetLink, userName = "User") => `
 </body>
 </html>
 `;
+
+
+export default resetPasswordEmail;

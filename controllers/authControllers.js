@@ -2,6 +2,8 @@ import catchAsyncError from "../middlewares/catchAsyncError.js";
 import User from "../models/user.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/AssignToken.js";
+import sendEmail from "../utils/sendEmail.js";
+import resetPasswordEmail from "../utils/emailTemplates.js";
 
 
 // Register User = /api/v1/register
@@ -54,7 +56,7 @@ export const logoutUser = catchAsyncError(async (req, res, next) => {
 
 export const forgetPassword = catchAsyncError(async (req, res, next) => {
     //Find user in database
-    const user = await User.findOne({email : user.req.body.email});
+    const user = await User.findOne({email : req.body.email});
     //check if user is exists
     if(!user){
         return next(new ErrorHandler("Invalid email or password", 404));
@@ -84,7 +86,7 @@ export const forgetPassword = catchAsyncError(async (req, res, next) => {
         user.resetpasswordExpire = undefined;
 
         await user.save();
-        return encodeXText(new ErrorHandler(error.message, 500));
+        return next(new ErrorHandler(error.message, 500));
     }
 
     sendToken(user, 201, res);
