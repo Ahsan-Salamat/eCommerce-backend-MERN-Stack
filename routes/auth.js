@@ -9,7 +9,9 @@ import {
   updatePassword,
   updateProfile,
   getAllUsers,
-  getUser
+  getUser,
+  updateUserProfile,
+  deleteProfile
 } from "../controllers/authControllers.js";
 
 const router = express.Router();
@@ -28,5 +30,7 @@ router.route("/password/update").get(isAuthenicatedUser, updatePassword);
 
 router.route("/admin/users").get(isAuthenicatedUser, authorizeRoles('admin') ,getAllUsers);
 router.route("/admin/user/:_id").get(isAuthenicatedUser, authorizeRoles('admin') ,getUser);
+router.route("/admin/user/update/:_id").get(isAuthenicatedUser, authorizeRoles('admin') ,updateUserProfile);
+router.route("/admin/user/delete/:_id").get(isAuthenicatedUser, authorizeRoles('admin') ,deleteProfile);
 
 export default router;

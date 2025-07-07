@@ -203,3 +203,41 @@ export const getUser = catchAsyncError(async(req,res,next) =>{
     user,
   })
 })
+
+
+//update User Profile by Admin => api/v1/admin/user/update
+export const updateUserProfile = catchAsyncError(async(req,res,next) =>{
+  
+  const newUserData = {
+    name:req.body.name,
+    email:req.body.email,
+    role:req.body.role
+  }
+
+  const user = await User.findByIdAndUpdate(req.params._id, newUserData , {new:true},)
+
+  
+
+  res.status(200).json({
+    success: true,
+    user,
+  })
+})
+
+
+//Delete User Profile by Admin => api/v1/admin/user/delete
+export const deleteProfile = catchAsyncError(async(req,res,next) =>{
+
+  const user = await User.findByIdAndUpdate(req.user._id, newUserData , {new:true},)
+
+  if(!user){
+    return next(new ErrorHandler("User not Found",404))
+  }
+
+  user.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    user,
+  })
+})
