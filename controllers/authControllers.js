@@ -228,7 +228,7 @@ export const updateUserProfile = catchAsyncError(async(req,res,next) =>{
 //Delete User Profile by Admin => api/v1/admin/user/delete
 export const deleteProfile = catchAsyncError(async(req,res,next) =>{
 
-  const user = await User.findByIdAndUpdate(req.user._id, newUserData , {new:true},)
+  const user = await User.findById(req.params._id)
 
   if(!user){
     return next(new ErrorHandler("User not Found",404))
@@ -238,6 +238,6 @@ export const deleteProfile = catchAsyncError(async(req,res,next) =>{
 
   res.status(200).json({
     success: true,
-    user,
+    message:`User ${user.name} successfully deleted`
   })
 })
