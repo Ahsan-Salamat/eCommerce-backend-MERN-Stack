@@ -155,3 +155,51 @@ export const updatePassword = catchAsyncError(async(req,res,next) =>{
     message: "Password updated successfully",
   })
 })
+
+//update Profile
+export const updateProfile = catchAsyncError(async(req,res,next) =>{
+  
+  const newUserData = {
+    name:req.body.name,
+    email:req.body.email
+  }
+
+  const user = await User.findByIdAndUpdate(req.user._id, newUserData , {new:true},)
+
+  res.status(200).json({
+    success: true,
+    user,
+  })
+})
+
+
+//get All Users => api/v1/admin/users
+export const getAllUsers = catchAsyncError(async(req,res,next) =>{
+  
+  const users = await User.find();
+
+  if(!users){
+    return next(new ErrorHandler("Users not available",404))
+  }
+
+  res.status(200).json({
+    success: true,
+    users,
+  })
+})
+
+
+//get User by id => api/v1/admin/user/:id
+export const getUser = catchAsyncError(async(req,res,next) =>{
+  
+  const user = await User.find(req.params._id);
+
+  if(!user){
+    return next(new ErrorHandler("User not Found",404))
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  })
+})
