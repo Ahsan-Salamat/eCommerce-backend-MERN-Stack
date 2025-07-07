@@ -4,6 +4,7 @@ export default [
     price: 4999,
     description: "High-quality noise cancelling over-ear headphones.",
     ratings: 4.5,
+    stock: 10,
     images: {
       public_id: "sample_image_1",
       url: "https://example.com/image1.jpg",
@@ -23,6 +24,7 @@ export default [
     price: 29999,
     description: "A 55-inch Ultra HD smart TV with voice control.",
     ratings: 4.7,
+    stock: 10,
     images: {
       public_id: "sample_image_2",
       url: "https://example.com/image2.jpg",
@@ -37,6 +39,7 @@ export default [
     price: 1999,
     description: "Portable Bluetooth speaker with deep bass and 10h battery life.",
     ratings: 4.3,
+    stock: 10,
     images: {
       public_id: "sample_image_3",
       url: "https://example.com/image3.jpg",
@@ -56,6 +59,7 @@ export default [
     price: 75999,
     description: "High-performance gaming laptop with RTX 3060 GPU.",
     ratings: 4.8,
+    stock: 10,
     images: {
       public_id: "sample_image_4",
       url: "https://example.com/image4.jpg",
@@ -75,6 +79,7 @@ export default [
     price: 7999,
     description: "Track your activity and health with this stylish smartwatch.",
     ratings: 4.2,
+    stock: 10,
     images: {
       public_id: "sample_image_5",
       url: "https://example.com/image5.jpg",
@@ -82,6 +87,7 @@ export default [
     category: "Accessories",
     seller: "FitTech",
     numOfReviews: 3,
+    stock: 10,
     reviews: {
       user: "60d0fe4f5311236168a109ce",
       rating: 4,
