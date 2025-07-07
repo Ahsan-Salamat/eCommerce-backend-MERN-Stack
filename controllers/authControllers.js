@@ -124,3 +124,14 @@ export const resetPassword = catchAsyncError(async (req, res, next) => {
     message: "Password reset successfully",
   });
 });
+
+
+//Get User Profile = api/v1/me
+
+export const userProfile = catchAsyncError(async(req,res,next) =>{
+  const user = await User.findById(req.user._id);
+
+  res.status(200).json({
+    user,
+  })
+})
