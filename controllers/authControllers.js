@@ -192,7 +192,7 @@ export const getAllUsers = catchAsyncError(async(req,res,next) =>{
 //get User by id => api/v1/admin/user/:id
 export const getUser = catchAsyncError(async(req,res,next) =>{
   
-  const user = await User.find(req.params._id);
+  const user = await User.findById(req.params._id);
 
   if(!user){
     return next(new ErrorHandler("User not Found",404))
