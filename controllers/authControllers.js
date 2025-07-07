@@ -234,7 +234,7 @@ export const deleteProfile = catchAsyncError(async(req,res,next) =>{
     return next(new ErrorHandler("User not Found",404))
   }
 
-  user.deleteOne();
+  await user.deleteOne();
 
   res.status(200).json({
     success: true,
