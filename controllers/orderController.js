@@ -111,3 +111,19 @@ order?.orderItems?.forEach(async(item)=>{
     message: `Order Status has been Changed: ${order.orderstatus}`,
   });
 });
+
+//Delete Order by Id -> api/v1/admin/deleteOrder
+export const deleteOrder = catchAsyncError(async (req, res, next) => {
+  const order = await Order.findById(req.params.id);
+
+
+    if (!order) {
+    return next(new ErrorHandler("Order Not Found by this Id", 404));
+  }
+
+  await order.deleteOne();
+
+  res.status(200).json({
+    success: true,
+  });
+});
