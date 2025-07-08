@@ -12,11 +12,13 @@ export default [
     category: "Headphones",
     seller: "Tech World",
     numOfReviews: 1,
-    reviews: {
-      user: "60d0fe4f5311236168a109ca",
-      rating: 4,
-      comment: "Great sound quality!",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109ca",
+        rating: 4,
+        comment: "Great sound quality!",
+      },
+    ],
     user: "60d0fe4f5311236168a109ca",
   },
   {
@@ -32,6 +34,7 @@ export default [
     category: "Electronics",
     seller: "Home Appliances Ltd",
     numOfReviews: 0,
+    reviews: [],
     user: "60d0fe4f5311236168a109cb",
   },
   {
@@ -47,11 +50,13 @@ export default [
     category: "Accessories",
     seller: "MusicMania",
     numOfReviews: 1,
-    reviews: {
-      user: "60d0fe4f5311236168a109cc",
-      rating: 5,
-      comment: "Amazing sound for the price!",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109cc",
+        rating: 5,
+        comment: "Amazing sound for the price!",
+      },
+    ],
     user: "60d0fe4f5311236168a109cc",
   },
   {
@@ -67,11 +72,13 @@ export default [
     category: "Laptops",
     seller: "GameHub",
     numOfReviews: 2,
-    reviews: {
-      user: "60d0fe4f5311236168a109cd",
-      rating: 4,
-      comment: "Runs all modern games smoothly.",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109cd",
+        rating: 4,
+        comment: "Runs all modern games smoothly.",
+      },
+    ],
     user: "60d0fe4f5311236168a109cd",
   },
   {
@@ -87,12 +94,13 @@ export default [
     category: "Accessories",
     seller: "FitTech",
     numOfReviews: 3,
-    stock: 10,
-    reviews: {
-      user: "60d0fe4f5311236168a109ce",
-      rating: 4,
-      comment: "Good features and battery life.",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109ce",
+        rating: 4,
+        comment: "Good features and battery life.",
+      },
+    ],
     user: "60d0fe4f5311236168a109ce",
   },
   {
@@ -107,11 +115,13 @@ export default [
     category: "Cameras",
     seller: "PhotoPro",
     numOfReviews: 5,
-    reviews: {
-      user: "60d0fe4f5311236168a109cf",
-      rating: 5,
-      comment: "Excellent image quality and easy to use.",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109cf",
+        rating: 5,
+        comment: "Excellent image quality and easy to use.",
+      },
+    ],
     user: "60d0fe4f5311236168a109cf",
   },
   {
@@ -126,11 +136,13 @@ export default [
     category: "Home",
     seller: "ComfortPlus",
     numOfReviews: 4,
-    reviews: {
-      user: "60d0fe4f5311236168a109d0",
-      rating: 4,
-      comment: "Great comfort for long working hours.",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109d0",
+        rating: 4,
+        comment: "Great comfort for long working hours.",
+      },
+    ],
     user: "60d0fe4f5311236168a109d0",
   },
   {
@@ -145,11 +157,13 @@ export default [
     category: "Home",
     seller: "Home Essentials",
     numOfReviews: 2,
-    reviews: {
-      user: "60d0fe4f5311236168a109d1",
-      rating: 3,
-      comment: "Heats quickly but a bit noisy.",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109d1",
+        rating: 3,
+        comment: "Heats quickly but a bit noisy.",
+      },
+    ],
     user: "60d0fe4f5311236168a109d1",
   },
   {
@@ -164,11 +178,13 @@ export default [
     category: "Food",
     seller: "Healthy Harvest",
     numOfReviews: 10,
-    reviews: {
-      user: "60d0fe4f5311236168a109d2",
-      rating: 5,
-      comment: "Crunchy and delicious!",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109d2",
+        rating: 5,
+        comment: "Crunchy and delicious!",
+      },
+    ],
     user: "60d0fe4f5311236168a109d2",
   },
   {
@@ -183,11 +199,13 @@ export default [
     category: "Sports",
     seller: "FitLife",
     numOfReviews: 6,
-    reviews: {
-      user: "60d0fe4f5311236168a109d3",
-      rating: 4,
-      comment: "Good grip and cushioning.",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109d3",
+        rating: 4,
+        comment: "Good grip and cushioning.",
+      },
+    ],
     user: "60d0fe4f5311236168a109d3",
   },
   {
@@ -202,11 +220,13 @@ export default [
     category: "Outdoor",
     seller: "Adventure Gear",
     numOfReviews: 3,
-    reviews: {
-      user: "60d0fe4f5311236168a109d4",
-      rating: 5,
-      comment: "Perfect for weekend trips!",
-    },
+    reviews: [
+      {
+        user: "60d0fe4f5311236168a109d4",
+        rating: 5,
+        comment: "Perfect for weekend trips!",
+      },
+    ],
     user: "60d0fe4f5311236168a109d4",
   },
 ];

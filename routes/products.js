@@ -5,6 +5,7 @@ import {
   getProductDetail,
   updateProduct,
   deleteProduct,
+  createUpdateReviews
 } from "../controllers/productsControllers.js";
 import { isAuthenicatedUser,authorizeRoles } from "../middlewares/auth.js";
 
@@ -12,6 +13,7 @@ const routes = express.Router();
 
 routes.route("/products").get(getProducts);
 routes.route("/products/:id").get(getProductDetail);
+routes.route("/reviews").get(isAuthenicatedUser,createUpdateReviews);
 
 
 // Admin routes

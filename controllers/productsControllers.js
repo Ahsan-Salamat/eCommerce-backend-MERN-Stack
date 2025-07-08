@@ -21,7 +21,6 @@ export const getProducts = catchAsyncError(async (req, res) => {
 
 //api/admin/products
 export const newProducts = catchAsyncError(async (req, res) => {
-
   req.body.user = req.user._id; // Assuming req.user is set by the authentication middleware
 
   const product = await Product.create(req.body);
@@ -74,5 +73,52 @@ export const deleteProduct = catchAsyncError(async (req, res) => {
 
   res.status(200).json({
     message: "Product has been deleted",
+  });
+});
+
+//create/update product reviews -> api/v1/reviews
+export const createUpdateReviews = catchAsyncError(async (req, res) => {
+  const { rating, comment, productId } = req.body;
+
+  const review = {
+    user: req.user._id,
+    comment,
+    rating: Number(rating),
+  };
+
+  const product = await Product.findById(productId);
+
+  if (!product) {
+    return res.status(404).json({ success: false, error: "Product not found" });
+  }
+
+  // Check if user has already reviewed the product
+  const isReviewed = product.reviews.find(
+    (r) => r.user.toString() === req.user._id.toString()
+  );
+
+  if (isReviewed) {
+    // Update existing review
+    product.reviews.forEach((r) => {
+      if (r.user.toString() === req.user._id.toString()) {
+        r.comment = comment;
+        r.rating = rating;
+      }
+    });
+  } else {
+    // Add new review
+    product.reviews.push(review);
+    product.numOfReviews = product.reviews.length;
+  }
+
+  // Calculate average rating
+  const totalRating = product.reviews.reduce((acc, r) => acc + r.rating, 0);
+  product.ratings = totalRating / product.reviews.length;
+
+  await product.save();
+
+  res.status(200).json({
+    success: true,
+    message: isReviewed ? "Review updated" : "Review added",
   });
 });
