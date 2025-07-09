@@ -122,3 +122,23 @@ export const createUpdateReviews = catchAsyncError(async (req, res) => {
     message: isReviewed ? "Review updated" : "Review added",
   });
 });
+
+
+//Get all reviews of particular product -> api/v1/review/:_id
+export const getAllReview = catchAsyncError(async(req,res,next)=>{
+
+  // const productId = req.params._id;
+  const product = await Product.findById(req.params.id)
+   if (!product) {
+    return res.status(404).json({ success: false, error: "Product not found" });
+  }
+
+  const productName = product.name
+  const reviews = product.reviews
+
+  res.status(200).json({
+    success:true,
+    productName,
+    reviews
+  })
+})
