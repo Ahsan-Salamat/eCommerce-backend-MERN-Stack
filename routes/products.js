@@ -6,7 +6,8 @@ import {
   updateProduct,
   deleteProduct,
   createUpdateReviews,
-  getAllReview
+  getAllReview,
+  deleteReviews
 } from "../controllers/productsControllers.js";
 import { isAuthenicatedUser,authorizeRoles } from "../middlewares/auth.js";
 
@@ -16,6 +17,7 @@ routes.route("/products").get(getProducts);
 routes.route("/products/:id").get(getProductDetail);
 routes.route("/reviews").get(isAuthenicatedUser,createUpdateReviews);
 routes.route("/reviews/:id").get(getAllReview);
+routes.route("/admin/reviews").delete(isAuthenicatedUser,authorizeRoles("admin"),deleteReviews);
 
 
 // Admin routes

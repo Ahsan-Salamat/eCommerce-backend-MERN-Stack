@@ -88,8 +88,8 @@ export const createUpdateReviews = catchAsyncError(async (req, res) => {
 
   const product = await Product.findById(productId);
 
-  if (!product) {
-    return res.status(404).json({ success: false, error: "Product not found" });
+   if (!product) {
+    return next(new ErrorHandler("Product not found", 404));
   }
 
   // Check if user has already reviewed the product
@@ -142,3 +142,31 @@ export const getAllReview = catchAsyncError(async(req,res,next)=>{
     reviews
   })
 })
+
+//delete reviews product reviews -> api/v1/reviews
+export const deleteReviews = catchAsyncError(async (req, res) => {
+  
+  const product = await Product.findById(req?.query?.productId)
+
+  if (!product) {
+    return next(new ErrorHandler("Product not found", 404));
+  }
+
+
+
+ product.reviews = product.reviews.filter(
+    (review) => review._id.toString() !== req?.query?.id.toString()
+  );
+
+  product.numOfReviews = product?.reviews?.length
+
+  // Calculate average rating
+  const aveRating = product.reviews.reduce((acc, r) => acc + r.rating, 0);
+  product.ratings = product.numOfReviews === 0 ? 0 : aveRating / product.numOfReviews;
+
+  await product.save();
+
+  res.status(200).json({
+    success: true,
+  });
+});
