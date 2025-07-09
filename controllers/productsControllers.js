@@ -124,11 +124,11 @@ export const createUpdateReviews = catchAsyncError(async (req, res) => {
 });
 
 
-//Get all reviews of particular product -> api/v1/review/:_id
+//Get all reviews of particular product -> api/v1/review
 export const getAllReview = catchAsyncError(async(req,res,next)=>{
 
-  // const productId = req.params._id;
-  const product = await Product.findById(req.params.id)
+  // const productId = req.query.id;
+  const product = await Product.findById(req.query.id)
    if (!product) {
     return res.status(404).json({ success: false, error: "Product not found" });
   }
@@ -168,5 +168,6 @@ export const deleteReviews = catchAsyncError(async (req, res) => {
 
   res.status(200).json({
     success: true,
+    product
   });
 });

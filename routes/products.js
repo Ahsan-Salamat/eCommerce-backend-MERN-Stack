@@ -15,8 +15,8 @@ const routes = express.Router();
 
 routes.route("/products").get(getProducts);
 routes.route("/products/:id").get(getProductDetail);
-routes.route("/reviews").get(isAuthenicatedUser,createUpdateReviews);
-routes.route("/reviews/:id").get(getAllReview);
+routes.route("/reviews/new").get(isAuthenicatedUser,createUpdateReviews);
+routes.route("/reviews").get(getAllReview);
 routes.route("/admin/reviews").delete(isAuthenicatedUser,authorizeRoles("admin"),deleteReviews);
 
 
